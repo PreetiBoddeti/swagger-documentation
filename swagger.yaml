@@ -1,0 +1,126 @@
+swagger: "2.0"
+info:
+  description: "This is a sampel Genre project to learn REST APIs and API documentation with Swagger"
+  version: "1.0.0"
+  title: "Genre Project"
+  termsOfService: "http://bhanukandregula/terms/"
+  contact:
+    email: "bkandreg@bhanukandregula.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+    
+host: "genereproject.herokuapp.com"
+basePath: "/vidly.com/api"
+tags:
+- name: "Genres Project"
+  description: "Types of Genres to watch and enjoy the entertainment"
+schemes:
+- "https"
+          
+paths:
+  /genres:
+    get:
+      tags:
+        - "Genre"
+      summary: "Get the list of genres from the array"
+      description: "This points to the localhost:8080 dev server to get the lists of genres from the array"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: OK
+          examples:
+            application/json: { "id": 1 , "genre": "abc" }
+        405:
+          description: "Invalid Input"
+    post:
+        tags:
+            - "Genre"
+        summary: "Add new gnere to the array"
+        description: "This points to the localhost:3000 dev server to add new genres item in the array"
+        parameters: 
+            - name: "genre"
+              in: "body"
+              schema: {type: "string"}
+              required: true
+              description: "This field should be a string and not be empty"
+        produces:
+            - "application/json"
+        consumes:
+            - "application/json"
+        responses:
+            200:
+                description: OK
+                examples:
+                    application/json: { "id": 1 , "genre": "abc" }
+            400:
+                description: "Invalid status value"
+            405:
+                description: "Invalid Input"
+    put:
+        tags:
+            - "Genre"
+        summary: "Update the existing genre in the array"
+        description: "This points to the localhost:3000 dev server to update genres item in the array"
+        parameters: 
+            - name: "id"
+              in: "body"
+              required: true
+              schema:
+                $ref: '#/definitions/genre'
+              description: "This is the unique id of the genre"
+                    
+        produces:
+            - "application/json"
+        consumes:
+            - "application/json"
+                            
+        responses:
+            200:
+                description: OK
+                examples:
+                    application/json: { "id": 1 , "genre": "abc" }
+            405:
+                description: "Invalid Input"
+    delete:
+        tags:
+            - "Genre"
+        summary: "Add new gnere to the array"
+        description: "This points to the localhost:3000 dev server to add new genres item in the array"
+        parameters: 
+            - name: "id"
+              in: "body"
+              required: true
+              schema:
+                $ref: '#/definitions/genredelete'
+              description: "This field should be a string and not be empty"
+        produces:
+            - "application/json"
+        consumes:
+            - "application/json"
+        responses:
+            200:
+                description: OK
+                examples:
+                    application/json: { "id": 1 , "genre": "abc" }
+            400:
+                description: "Invalid status value"
+            405:
+                description: "Invalid Input"
+    
+definitions:
+    genre:
+        type: "object"
+        properties:
+        id:
+            type: integer
+        genre:
+            type: string
+    genredelete:
+        type: "object"
+        properties:
+        id:
+            type: integer
+     
+    
